@@ -20,7 +20,6 @@
   <div class="container my-5">
     <h2 class="text-center mb-4">Student Attendance Tracker</h2>
 
-    <!-- Batch Selector -->
     <div class="mb-4 text-center">
       <button class="btn btn-outline-primary batch-btn" onclick="loadBatch('A')">Batch A (101–200)</button>
       <button class="btn btn-outline-secondary batch-btn" onclick="loadBatch('B')">Batch B (201–280)</button>
@@ -42,6 +41,9 @@
       <button class="btn btn-success me-2" onclick="markAllPresent()">Mark All Present</button>
       <button class="btn btn-warning me-2" onclick="resetAttendance()">Reset Attendance</button>
       <button class="btn btn-primary" onclick="showAbsent()">Show Absent Roll Numbers</button>
+      <button class="btn btn-info mt-2" onclick="showTotalPresent()">Show Total Present Students</button>
+      <div id="presentCount" class="mt-2"></div>
+
     </div>
 
     <h4 class="mt-4">Absent Roll Numbers:</h4>
@@ -785,7 +787,7 @@
       table.innerHTML = "";
       document.getElementById("absentList").innerHTML = "";
 
-      if (batchName === "A") {
+      if (batchName == "A") {
         students = studentsA;
       } else if (batchName === "B") {
         students = studentsB;
@@ -818,7 +820,7 @@
       const absentBtn = document.getElementById(`absent-${roll}`);
       const statusSpan = document.getElementById(`status-${roll}`);
 
-      if (status === "Present") {
+      if (status == "Present") {
         presentBtn.classList.add("selected");
         absentBtn.classList.remove("selected");
         statusSpan.textContent = "Present";
@@ -850,17 +852,24 @@
       absentDiv.innerHTML = "";
 
       const absentRolls = Object.entries(attendanceRecord)
-        .filter(([roll, status]) => status === "Absent")
+        .filter(([roll, status]) => status == "Absent")
         .map(([roll]) => roll);
 
-      if (absentRolls.length === 0) {
+      if (absentRolls.length == 0) {
         absentDiv.innerHTML = "<p class='text-success'>All students are present!</p>";
       } else {
         absentDiv.innerHTML = `<p><strong>${absentRolls.join(", ")}</strong></p>`;
       }
     }
+    
+  function showTotalPresent() {
+    const presentDiv = document.getElementById("presentCount");
+    const presentCount = Object.values(attendanceRecord).filter(status => status == "Present").length;
+  
+    presentDiv.innerHTML = `<p class="text-info fw-bold">Total Present Students: ${presentCount}</p>`;
+  }
 
-    window.onload = () => loadBatch("A");
+  window.onload = () => loadBatch("A");
   </script>
 </body>
 </html>
