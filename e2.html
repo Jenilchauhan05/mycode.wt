@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="name">Name :</label>
+    <input type="text" id="uname" placeholder="enter name">
+    <label for="see">Semester :</label>
+    <input type="text" id="usem" placeholder="enter sem">
+    <button onclick="addName()">Add</button>
+    <br><br>
+
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>sem</th>
+            <th>action</th>
+        </tr>
+        <tbody id="bodyvly">
+
+        </tbody>
+    </table>
+
+    <script>
+        Array = []
+        editindex = -1;
+
+        function addstu () {
+
+            name = document.getElementById("uname").value
+            sem = document.getElementById("usem").value 
+
+            students = {
+                name : name,
+                sem : sem
+            }
+
+            if (editindex != -1) {
+                arr[editindex] = students;
+                editindex = -1;
+                btn.innerHTML = 'add';
+            }
+            else {
+                if (username == ""){
+                    alert("enter valid name");
+                }
+                else {
+                    arr.push(students);
+                }
+            }
+            document.getElementById("uname").value = '';
+            document.getElementById("usem").value = '';
+            display();
+        }
+
+        function display() {
+            array = ""
+
+            for (i = 0; i < array.length; i++) {
+                array += `<tr>
+                <td>${i+1}</td>
+                <td>${array[i]}</td>
+                <td><button onclick="editall()">edit</button> <button onclick="deleteall()">delete</button></td>
+                </tr>`
+            }
+            document.getElementById("bodyvly").innerHTML = temp;
+        }
+
+        function deleteall() {
+            arr.splice(i, 1);
+            display();
+        }
+
+        function addedit(i) {
+            editindex = i;
+            document.getElementById("uname").value = arr[i].name;
+            document.getElementById("usem").value = arr[i].sem;
+            add.innerHTML = 'edit';
+        }
+        
+    </script>
+</body>
+</html>
