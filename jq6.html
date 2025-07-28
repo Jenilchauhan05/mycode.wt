@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <button class="myEle">change</button>
+    <p class="myEle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis voluptatum aliquam eveniet eligendi veniam sequi, recusandae tempore doloribus provident adipisci veritatis consequuntur voluptas itaque officiis quidem aspernatur illo harum facere.</p>
+    <input type="text" class="myEle">
+    <script>
+        $(".myEle").focus(function(){
+            $(this).css({
+                "backgroundColor" : "red",
+                "color" : "white"
+            })
+        })
+        $(".myEle").blur(function(){
+            $(this).css({
+                "backgroundColor" : "white",
+                "color" : "blue"
+            })
+        })
+    </script>
+</body>
+</html>
